@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aleixbbpp.github.io/CURRICULUMWEB2/sitemap.xml
