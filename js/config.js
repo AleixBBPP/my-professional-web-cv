@@ -14,7 +14,7 @@ window.CONFIG = {
             "Mercados e inversión"
         ],
         email: "aleixboschperez@gmail.com",
-        phone: "+34 600 000 000",
+        phone: "",
         location: "España",
         avatar: "assets/images/avatar.jpg",
         cvUrl: "assets/images/cv-aleix-bosch.pdf"
