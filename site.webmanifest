@@ -1,0 +1,12 @@
+{
+  "name": "Aleix Bosch Pérez — Portfolio",
+  "short_name": "Aleix Bosch",
+  "start_url": "/CURRICULUMWEB2/",
+  "scope": "/CURRICULUMWEB2/",
+  "display": "standalone",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "icons": [
+    { "src": "assets/images/avatar.jpg", "sizes": "512x512", "type": "image/jpeg" }
+  ]
+}

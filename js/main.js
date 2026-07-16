@@ -217,6 +217,10 @@ function renderHome() {
                     <img
                         src="${CONFIG.personal.avatar}"
                         alt="${CONFIG.personal.name}"
+                        width="320"
+                        height="320"
+                        fetchpriority="high"
+                        decoding="async"
                         onerror="this.src='https://placehold.co/320x320/0b0f14/f5f7fa?text=Aleix+Bosch'"
                     >
                 </div>
@@ -333,7 +337,11 @@ function renderAbout() {
             <div class="about-image">
                 <img
                     src="${CONFIG.about.image}"
-                    alt="${CONFIG.personal.name}"
+                    alt="Foto de ${CONFIG.personal.name} trabajando"
+                    width="520"
+                    height="640"
+                    loading="lazy"
+                    decoding="async"
                     onerror="this.src='https://placehold.co/520x640/121821/f5f7fa?text=Sobre+Mi'"
                 >
             </div>
@@ -644,13 +652,14 @@ function renderContact() {
                     </div>
                 </div>
 
+                ${CONFIG.personal.phone ? `
                 <div class="contact-info-item">
                     <span class="contact-icon">📱</span>
                     <div class="contact-details">
                         <h4>Teléfono</h4>
                         <a href="tel:${CONFIG.personal.phone}">${CONFIG.personal.phone}</a>
                     </div>
-                </div>
+                </div>` : ''}
 
                 <div class="contact-info-item">
                     <span class="contact-icon">📍</span>
@@ -721,7 +730,7 @@ function renderFooter() {
                     <h4>Contacto rápido</h4>
                     <ul class="footer-links">
                         <li><a href="mailto:${CONFIG.personal.email}">${CONFIG.personal.email}</a></li>
-                        <li><a href="tel:${CONFIG.personal.phone}">${CONFIG.personal.phone}</a></li>
+                        ${CONFIG.personal.phone ? `<li><a href="tel:${CONFIG.personal.phone}">${CONFIG.personal.phone}</a></li>` : ''}
                     </ul>
                 </div>
 
