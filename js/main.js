@@ -652,13 +652,14 @@ function renderContact() {
                     </div>
                 </div>
 
+                ${CONFIG.personal.phone ? `
                 <div class="contact-info-item">
                     <span class="contact-icon">📱</span>
                     <div class="contact-details">
                         <h4>Teléfono</h4>
                         <a href="tel:${CONFIG.personal.phone}">${CONFIG.personal.phone}</a>
                     </div>
-                </div>
+                </div>` : ''}
 
                 <div class="contact-info-item">
                     <span class="contact-icon">📍</span>
@@ -729,7 +730,7 @@ function renderFooter() {
                     <h4>Contacto rápido</h4>
                     <ul class="footer-links">
                         <li><a href="mailto:${CONFIG.personal.email}">${CONFIG.personal.email}</a></li>
-                        <li><a href="tel:${CONFIG.personal.phone}">${CONFIG.personal.phone}</a></li>
+                        ${CONFIG.personal.phone ? `<li><a href="tel:${CONFIG.personal.phone}">${CONFIG.personal.phone}</a></li>` : ''}
                     </ul>
                 </div>
 
