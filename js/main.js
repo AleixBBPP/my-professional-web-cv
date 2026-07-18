@@ -30,11 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderHome();
         renderStats();
+        renderAreas();
         renderAbout();
         renderExperience();
         renderAnalysis();
         renderContact();
         renderFooter();
+
 
     } catch (error) {
         console.error('Error al inicializar la web:', error);
