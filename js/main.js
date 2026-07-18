@@ -30,11 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderHome();
         renderStats();
+        renderAreas();
         renderAbout();
         renderExperience();
         renderAnalysis();
         renderContact();
         renderFooter();
+
 
     } catch (error) {
         console.error('Error al inicializar la web:', error);
@@ -237,9 +239,14 @@ function renderStats() {
 
     statsGrid.innerHTML = CONFIG.stats.map((stat, index) => `
         <div class="stat-card" data-aos="fade-up" data-aos-delay="${index * 100}">
-            <span class="stat-icon">${stat.icon}</span>
-            <span class="stat-number" data-target="${stat.number}">${stat.suffix}</span>
-            <span class="stat-label">${stat.label}</span>
+            <div class="stat-card-top">
+                <span class="stat-icon" aria-hidden="true">${stat.icon}</span>
+                <span class="stat-number" data-target="${stat.number}">${stat.suffix}</span>
+            </div>
+            <div class="stat-card-body">
+                <span class="stat-label">${stat.label}</span>
+                <p class="stat-description">${stat.description}</p>
+            </div>
         </div>
     `).join('');
 
@@ -255,31 +262,62 @@ function animateStats() {
             if (entry.isIntersecting) {
                 const statNumbers = entry.target.querySelectorAll('.stat-number');
 
-                statNumbers.forEach(statNumber => {
+                statNumbers.forEach((statNumber, index) => {
                     const target = parseInt(statNumber.dataset.target, 10);
                     const suffix = statNumber.textContent.replace(/[0-9]/g, '');
-                    let current = 0;
-                    const increment = Math.max(target / 50, 1);
+                    const duration = 1600;
+                    const startTime = performance.now();
+                    const delay = index * 120;
 
-                    const timer = setInterval(() => {
-                        current += increment;
-
-                        if (current >= target) {
-                            statNumber.textContent = target + suffix;
-                            clearInterval(timer);
-                        } else {
-                            statNumber.textContent = Math.floor(current) + suffix;
+                    const step = (now) => {
+                        const elapsed = now - startTime - delay;
+                        if (elapsed < 0) {
+                            requestAnimationFrame(step);
+                            return;
                         }
-                    }, 30);
+
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 4);
+                        const current = Math.floor(eased * target);
+                        statNumber.textContent = current + suffix;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(step);
+                        } else {
+                            statNumber.textContent = target + suffix;
+                        }
+                    };
+
+                    requestAnimationFrame(step);
                 });
 
                 obs.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.25, rootMargin: '0px 0px -50px 0px' });
 
     observer.observe(statsGrid);
 }
+
+function renderAreas() {
+    const areasGrid = document.getElementById('areas-grid');
+    if (!areasGrid || !CONFIG.areas || CONFIG.areas.length === 0) return;
+
+    areasGrid.innerHTML = CONFIG.areas.map((area, index) => `
+        <a class="area-card" href="${area.href}" data-aos="fade-up" data-aos-delay="${index * 100}">
+            <span class="area-icon" aria-hidden="true">${area.icon}</span>
+            <div class="area-card-body">
+                <h3 class="area-title">${area.title}</h3>
+                <p class="area-description">${area.description}</p>
+                <span class="area-link">
+                    Ver proyectos
+                    <span class="area-link-arrow" aria-hidden="true">→</span>
+                </span>
+            </div>
+        </a>
+    `).join('');
+}
+
 
 // ====================================
 // ABOUT SECTION

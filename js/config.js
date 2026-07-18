@@ -25,19 +25,53 @@ window.CONFIG = {
             icon: "📚",
             number: 2,
             suffix: "º",
-            label: "Curso de Economía"
+            label: "Curso de Economía",
+            description: "Formación sólida en economía, finanzas y análisis cuantitativo."
         },
         {
             icon: "📈",
             number: 7,
             suffix: "+",
-            label: "Años siguiendo los mercados"
+            label: "Años siguiendo los mercados",
+            description: "Seguimiento constante de empresas, ciclos y valoración."
         },
         {
             icon: "🧠",
             number: 4,
             suffix: "",
-            label: "Áreas clave de análisis"
+            label: "Áreas clave de análisis",
+            description: "Economía, empresas, instituciones e inteligencia artificial."
+        }
+    ],
+
+    areas: [
+        {
+            id: "economia-mercados",
+            icon: "🌍",
+            title: "Economía y mercados",
+            description: "Empresas, inversión, valoración, ciclos económicos y asignación de capital.",
+            href: "/proyectos/economia-mercados.html"
+        },
+        {
+            id: "instituciones-politicas",
+            icon: "🏛️",
+            title: "Instituciones y políticas públicas",
+            description: "Regulación, incentivos, productividad, Estado y desarrollo económico.",
+            href: "/proyectos/instituciones-politicas.html"
+        },
+        {
+            id: "inteligencia-artificial",
+            icon: "💻",
+            title: "Inteligencia Artificial",
+            description: "Impacto económico de la IA, productividad, transformación empresarial y modelos de negocio.",
+            href: "/proyectos/inteligencia-artificial.html"
+        },
+        {
+            id: "pensamiento-critico",
+            icon: "🔍",
+            title: "Pensamiento crítico",
+            description: "Análisis de problemas complejos, evaluación de argumentos y toma de decisiones.",
+            href: "/proyectos/pensamiento-critico.html"
         }
     ],
 
