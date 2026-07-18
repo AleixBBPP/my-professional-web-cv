@@ -1327,9 +1327,11 @@ button.btn {
         grid-template-columns: 1fr;
     }
 
-    .skills-categories-grid {
+    .skills-categories-grid,
+    .areas-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
 
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
