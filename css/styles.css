@@ -421,10 +421,6 @@ button.btn {
     transform: translateX(4px);
 }
 
-.hero-visual {
-    display: flex;
-    justify-content: center;
-}
 
 .hero-avatar-wrap {
     width: min(100%, 380px);
