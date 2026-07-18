@@ -228,45 +228,6 @@ function renderHome() {
     `;
 }
 
-function initTypingAnimation() {
-    const typingElement = document.querySelector('.typing-text');
-    if (!typingElement || !CONFIG.personal.roles || CONFIG.personal.roles.length === 0) return;
-
-    const roles = CONFIG.personal.roles;
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        const currentRole = roles[roleIndex];
-
-        if (!isDeleting) {
-            typingElement.textContent = currentRole.substring(0, charIndex + 1);
-            charIndex++;
-
-            if (charIndex === currentRole.length) {
-                isDeleting = true;
-                setTimeout(type, 1800);
-                return;
-            }
-        } else {
-            typingElement.textContent = currentRole.substring(0, charIndex - 1);
-            charIndex--;
-
-            if (charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                setTimeout(type, 400);
-                return;
-            }
-        }
-
-        setTimeout(type, isDeleting ? 50 : 90);
-    }
-
-    type();
-}
-
 // ====================================
 // STATS SECTION
 // ====================================
