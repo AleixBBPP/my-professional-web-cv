@@ -1381,9 +1381,11 @@ button.btn {
 
     .stats-grid,
     .skills-categories-grid,
+    .areas-grid,
     .footer-content {
         grid-template-columns: 1fr;
     }
+
 
     .experience-item {
         grid-template-columns: 1fr;
