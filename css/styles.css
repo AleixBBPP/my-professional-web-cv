@@ -357,72 +357,73 @@ button.btn {
 .hero-shell {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    gap: 3rem;
+    gap: 4rem;
     align-items: center;
 }
 
+.hero-copy {
+    animation: hero-fade-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: hero-fade-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s both;
+}
+
 .hero-kicker {
-    display: inline-block;
-    margin-bottom: 1rem;
-    padding: 0.45rem 0.8rem;
+    display: inline-flex;
+    margin-bottom: 1.25rem;
+    padding: 0.45rem 0.9rem;
     border-radius: var(--radius-full);
     border: 1px solid rgba(23, 199, 181, 0.22);
     background: rgba(23, 199, 181, 0.08);
     color: var(--color-primary);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
 }
 
 .hero-greeting {
     font-family: var(--font-display);
-    font-size: clamp(2.9rem, 6vw, 4.6rem);
-    line-height: 0.95;
+    font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+    line-height: 1.05;
     font-weight: 800;
-    letter-spacing: -0.05em;
-    margin: 0 0 1rem;
-    max-width: 11ch;
+    letter-spacing: -0.04em;
+    margin: 0 0 1.25rem;
+    max-width: 16ch;
 }
 
-.hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2vw, 1.85rem);
+.hero-subtitle {
+    max-width: 60ch;
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    line-height: 1.7;
     color: var(--color-text-secondary);
-    margin-bottom: 1.3rem;
-    min-height: 2.2rem;
-}
-
-.typing-text {
-    color: var(--color-text);
-}
-
-.cursor {
-    display: inline-block;
-    color: var(--color-primary);
-    animation: blink 1s step-end infinite;
-}
-
-.hero-tagline {
-    max-width: 62ch;
-    font-size: 1.08rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 2.2rem;
 }
 
 .hero-cta {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 1.4rem;
+    align-items: center;
 }
 
-.hero-visual {
-    display: flex;
-    justify-content: center;
+.btn-arrow {
+    display: inline-block;
+    margin-left: 0.25rem;
+    transition: transform 0.2s ease;
 }
+
+.btn-primary:hover .btn-arrow,
+.btn-primary:focus-visible .btn-arrow {
+    transform: translateX(4px);
+}
+
 
 .hero-avatar-wrap {
-    width: min(100%, 390px);
+    width: min(100%, 380px);
     aspect-ratio: 1 / 1.08;
     padding: 1rem;
     border-radius: 32px;
@@ -430,8 +431,11 @@ button.btn {
         linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)),
         rgba(18, 24, 33, 0.92);
     border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-lg);
+    box-shadow:
+        var(--shadow-lg),
+        0 0 60px rgba(23, 199, 181, 0.08);
     position: relative;
+    animation: hero-float 6s ease-in-out infinite;
 }
 
 .hero-avatar-wrap::before {
@@ -442,13 +446,24 @@ button.btn {
     padding: 1px;
     background: linear-gradient(
         135deg,
-        rgba(23, 199, 181, 0.4),
+        rgba(23, 199, 181, 0.45),
         rgba(255, 255, 255, 0.05),
-        rgba(200, 169, 107, 0.25)
+        rgba(200, 169, 107, 0.3)
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
             mask-composite: exclude;
+}
+
+.hero-avatar-wrap::after {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    border-radius: 44px;
+    background: radial-gradient(circle at center, rgba(23, 199, 181, 0.12), transparent 65%);
+    z-index: -1;
+    opacity: 0.55;
+    pointer-events: none;
 }
 
 .hero-avatar-wrap img {
@@ -456,6 +471,26 @@ button.btn {
     height: 100%;
     object-fit: cover;
     border-radius: 24px;
+}
+
+@keyframes hero-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hero-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 /* ====================================
@@ -1153,15 +1188,6 @@ button.btn {
 @keyframes spin {
     to {
         transform: rotate(360deg);
-    }
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
     }
 }
 

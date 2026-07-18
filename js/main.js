@@ -191,24 +191,23 @@ function renderHome() {
     heroContent.innerHTML = `
         <div class="hero-shell">
             <div class="hero-copy">
-                <span class="hero-kicker">ECONOMÍA · INVERSIÓN · ESTRATEGIA</span>
+                <span class="hero-kicker">Análisis · Economía · Empresas · Instituciones</span>
 
                 <h1 class="hero-greeting">
-                    Hola, soy <span class="highlight">${CONFIG.personal.name}</span>
+                    Analista de economía, empresas e instituciones.
                 </h1>
 
-                <h2 class="hero-title">
-                    <span class="typing-text"></span>
-                    <span class="cursor">|</span>
-                </h2>
-
-                <p class="hero-tagline">${CONFIG.personal.tagline}</p>
+                <p class="hero-subtitle">
+                    Analizo empresas, mercados, instituciones, políticas públicas e inteligencia artificial
+                    para comprender sistemas complejos y tomar mejores decisiones.
+                </p>
 
                 <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary">Hablemos</a>
-                    <a href="${CONFIG.personal.cvUrl}" class="btn btn-secondary" ${CONFIG.personal.cvUrl !== '#' ? 'download' : ''}>
-                        Descargar CV
+                    <a href="#analysis" class="btn btn-primary">
+                        Ver análisis
+                        <span class="btn-arrow" aria-hidden="true">→</span>
                     </a>
+                    <a href="#contact" class="btn btn-secondary">Contactar</a>
                 </div>
             </div>
 
@@ -227,47 +226,6 @@ function renderHome() {
             </div>
         </div>
     `;
-
-    initTypingAnimation();
-}
-
-function initTypingAnimation() {
-    const typingElement = document.querySelector('.typing-text');
-    if (!typingElement || !CONFIG.personal.roles || CONFIG.personal.roles.length === 0) return;
-
-    const roles = CONFIG.personal.roles;
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        const currentRole = roles[roleIndex];
-
-        if (!isDeleting) {
-            typingElement.textContent = currentRole.substring(0, charIndex + 1);
-            charIndex++;
-
-            if (charIndex === currentRole.length) {
-                isDeleting = true;
-                setTimeout(type, 1800);
-                return;
-            }
-        } else {
-            typingElement.textContent = currentRole.substring(0, charIndex - 1);
-            charIndex--;
-
-            if (charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                setTimeout(type, 400);
-                return;
-            }
-        }
-
-        setTimeout(type, isDeleting ? 50 : 90);
-    }
-
-    type();
 }
 
 // ====================================
