@@ -61,14 +61,14 @@ window.CONFIG = {
         },
         {
             id: "inteligencia-artificial",
-            icon: "🤖",
+            icon: "💻",
             title: "Inteligencia Artificial",
             description: "Impacto económico de la IA, productividad, transformación empresarial y modelos de negocio.",
             href: "/proyectos/inteligencia-artificial.html"
         },
         {
             id: "pensamiento-critico",
-            icon: "🧩",
+            icon: "🔍",
             title: "Pensamiento crítico",
             description: "Análisis de problemas complejos, evaluación de argumentos y toma de decisiones.",
             href: "/proyectos/pensamiento-critico.html"
