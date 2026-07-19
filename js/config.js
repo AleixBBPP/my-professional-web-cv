@@ -23,7 +23,7 @@ window.CONFIG = {
     stats: [
         {
             icon: "📚",
-            number: 2,
+            number: 3,
             suffix: "º",
             label: "Curso de Economía",
             description: "Formación sólida en economía, finanzas y análisis cuantitativo."
@@ -240,7 +240,7 @@ window.CONFIG = {
             company: "Proyecto personal",
             location: "GitHub",
             period: "2026",
-            description: "Diseño y construcción de una web personal para presentar perfil, experiencia, habilidades e identidad profesional en formato moderno y accesible.",
+            description: "Diseño y construcción de paginas webs para negocios y personales en versión de curriculum web; ejecución de modelos de pago, comandas, stock, opiniones y diferentes otras secciones interactivas personalizadas. ",
             achievements: [
                 "Estructuración del contenido en arquitectura config-driven.",
                 "Mejora del diseño visual, experiencia de usuario y presencia online.",
