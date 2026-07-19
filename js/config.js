@@ -252,7 +252,7 @@ window.CONFIG = {
 
     social: {
         github: "https://github.com/AleixBBPP",
-        linkedin: "https://www.linkedin.com/",
+        linkedin: "www.linkedin.com/in/aleix-bosch",
         twitter: "",
         instagram: ""
     }
