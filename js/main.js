@@ -26,14 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
         initThemeToggle();
         initScrollProgress();
         initBackToTop();
-        initProjectModal();
 
         renderHome();
         renderStats();
         renderAreas();
         renderAbout();
         renderExperience();
-        renderAnalysis();
         renderContact();
         renderFooter();
 
@@ -205,11 +203,7 @@ function renderHome() {
                 </p>
 
                 <div class="hero-cta">
-                    <a href="#analysis" class="btn btn-primary">
-                        Ver análisis
-                        <span class="btn-arrow" aria-hidden="true">→</span>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">Contactar</a>
+                    <a href="#contact" class="btn btn-primary">Contactar</a>
                 </div>
             </div>
 
@@ -304,17 +298,13 @@ function renderAreas() {
     if (!areasGrid || !CONFIG.areas || CONFIG.areas.length === 0) return;
 
     areasGrid.innerHTML = CONFIG.areas.map((area, index) => `
-        <a class="area-card" href="${area.href}" data-aos="fade-up" data-aos-delay="${index * 100}">
+        <div class="area-card" data-aos="fade-up" data-aos-delay="${index * 100}">
             <span class="area-icon" aria-hidden="true">${area.icon}</span>
             <div class="area-card-body">
                 <h3 class="area-title">${area.title}</h3>
                 <p class="area-description">${area.description}</p>
-                <span class="area-link">
-                    Ver proyectos
-                    <span class="area-link-arrow" aria-hidden="true">→</span>
-                </span>
             </div>
-        </a>
+        </div>
     `).join('');
 }
 
@@ -426,176 +416,16 @@ function renderExperience() {
                 </div>
             `).join('')}
         </div>
+
+        <p class="experience-linkedin" data-aos="fade-up">
+            <a href="${CONFIG.social.linkedin || '#'}" target="_blank" rel="noopener noreferrer">
+                Más en LinkedIn
+                <span aria-hidden="true">→</span>
+            </a>
+        </p>
     `;
 }
 
-// ====================================
-// ANALYSIS SECTION
-// ====================================
-function renderAnalysis() {
-    const analysisContent = document.getElementById('analysis-content');
-    if (!analysisContent || !CONFIG.analysis || CONFIG.analysis.length === 0) return;
-
-    analysisContent.innerHTML = `
-        <div class="analysis-intro" data-aos="fade-up">
-            <p>
-                Una selección de ideas, marcos y seguimientos que resumen cómo analizo empresas,
-                sectores y contextos de mercado.
-            </p>
-        </div>
-
-        <div class="analysis-grid">
-            ${CONFIG.analysis.map((item, index) => `
-                <article
-                    class="analysis-card"
-                    data-id="${item.id}"
-                    data-aos="fade-up"
-                    data-aos-delay="${index * 100}"
-                    tabindex="0"
-                    role="button"
-                    aria-label="Abrir análisis: ${item.title}"
-                >
-                    <div class="analysis-card-top">
-                        <span class="analysis-category">${item.category}</span>
-                        <span class="analysis-status">${item.status}</span>
-                    </div>
-
-                    <h3 class="analysis-title">${item.title}</h3>
-                    <p class="analysis-excerpt">${item.excerpt}</p>
-
-                    <div class="analysis-metrics">
-                        <div class="analysis-metric">
-                            <span class="analysis-metric-label">Tipo</span>
-                            <span class="analysis-metric-value">${item.type}</span>
-                        </div>
-                        <div class="analysis-metric">
-                            <span class="analysis-metric-label">Horizonte</span>
-                            <span class="analysis-metric-value">${item.horizon}</span>
-                        </div>
-                        <div class="analysis-metric">
-                            <span class="analysis-metric-label">Convicción</span>
-                            <span class="analysis-metric-value">${item.conviction}</span>
-                        </div>
-                    </div>
-
-                    <p class="analysis-thesis">${item.thesis}</p>
-
-                    <div class="analysis-tags">
-                        ${item.tags.map(tag => `
-                            <span class="analysis-tag">${tag}</span>
-                        `).join('')}
-                    </div>
-
-                    <button class="analysis-open-btn" type="button">
-                        Ver tesis completa
-                    </button>
-                </article>
-            `).join('')}
-        </div>
-    `;
-
-    bindAnalysisCards();
-}
-
-function bindAnalysisCards() {
-    const cards = document.querySelectorAll('.analysis-card');
-
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const id = card.dataset.id;
-            openAnalysisModal(id);
-        });
-
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const id = card.dataset.id;
-                openAnalysisModal(id);
-            }
-        });
-    });
-}
-
-function openAnalysisModal(id) {
-    const modal = document.getElementById('project-modal');
-    const modalBody = document.getElementById('modal-body');
-    if (!modal || !modalBody || !CONFIG.analysis) return;
-
-    const item = CONFIG.analysis.find(entry => entry.id === id);
-    if (!item) return;
-
-    modalBody.innerHTML = `
-        <article class="analysis-modal-content">
-            <div class="analysis-modal-hero">
-                <div class="analysis-modal-hero-top">
-                    <span class="analysis-category">${item.category}</span>
-                    <span class="analysis-status">${item.status}</span>
-                </div>
-
-                <h2 class="analysis-modal-title">${item.detailTitle}</h2>
-                <p class="analysis-modal-thesis">${item.thesis}</p>
-            </div>
-
-            <div class="analysis-summary-grid">
-                <div class="analysis-summary-card">
-                    <span class="analysis-summary-label">Tipo de idea</span>
-                    <span class="analysis-summary-value">${item.type}</span>
-                </div>
-                <div class="analysis-summary-card">
-                    <span class="analysis-summary-label">Horizonte</span>
-                    <span class="analysis-summary-value">${item.horizon}</span>
-                </div>
-                <div class="analysis-summary-card">
-                    <span class="analysis-summary-label">Convicción</span>
-                    <span class="analysis-summary-value">${item.conviction}</span>
-                </div>
-                <div class="analysis-summary-card">
-                    <span class="analysis-summary-label">Riesgo principal</span>
-                    <span class="analysis-summary-value">${item.primaryRisk}</span>
-                </div>
-            </div>
-
-            <div class="analysis-modal-block">
-                <div class="analysis-modal-section">
-                    <h3>Idea central</h3>
-                    ${item.detailText.map(paragraph => `<p>${paragraph}</p>`).join('')}
-                </div>
-            </div>
-
-            <div class="analysis-modal-dual">
-                <div class="analysis-modal-block">
-                    <div class="analysis-modal-section">
-                        <h3>Catalizadores / qué vigilo</h3>
-                        <ul class="analysis-risk-list">
-                            ${item.catalysts.map(point => `<li>${point}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="analysis-modal-block">
-                    <div class="analysis-modal-section">
-                        <h3>Riesgos / puntos a vigilar</h3>
-                        <ul class="analysis-risk-list">
-                            ${item.risks.map(risk => `<li>${risk}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="analysis-conclusion-box">
-                <span class="analysis-conclusion-label">Conclusión</span>
-                <p>${item.conclusion}</p>
-            </div>
-
-            <div class="analysis-tags analysis-tags-large">
-                ${item.tags.map(tag => `<span class="analysis-tag">${tag}</span>`).join('')}
-            </div>
-        </article>
-    `;
-
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-}
 // ====================================
 // CONTACT SECTION
 // ====================================
@@ -752,34 +582,6 @@ function renderFooter() {
     `;
 }
 
-// ====================================
-// PROJECT MODAL
-// ====================================
-function initProjectModal() {
-    const modal = document.getElementById('project-modal');
-    const closeBtn = document.getElementById('modal-close');
-
-    if (!modal || !closeBtn) return;
-
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden', 'true');
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('open');
-            modal.setAttribute('aria-hidden', 'true');
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            modal.classList.remove('open');
-            modal.setAttribute('aria-hidden', 'true');
-        }
-    });
-}
 
 // ====================================
 // SCROLL PROGRESS BAR
