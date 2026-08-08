@@ -565,7 +565,7 @@ function renderFooter() {
                     <h4>Sígueme</h4>
                     <div class="social-links">
                         ${Object.entries(CONFIG.social)
-                            .filter(([_, value]) => value)
+                            .filter(([platform, value]) => value && platform !== 'github')
                             .map(([platform, url]) => `
                                 <a href="${url}" target="_blank" rel="noopener noreferrer" class="social-link" title="${platform}">
                                     ${getSocialIcon(platform)}
