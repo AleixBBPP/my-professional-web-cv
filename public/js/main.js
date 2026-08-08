@@ -204,6 +204,7 @@ function renderHome() {
 
                 <div class="hero-cta">
                     <a href="#contact" class="btn btn-primary">Contactar</a>
+                    <a href="${CONFIG.social.linkedin}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn</a>
                 </div>
             </div>
 
@@ -499,7 +500,7 @@ function renderContact() {
                     <h4>Sígueme</h4>
                     <div class="social-links">
                         ${Object.entries(CONFIG.social)
-                            .filter(([_, value]) => value)
+                            .filter(([platform, value]) => value && platform !== 'github')
                             .map(([platform, url]) => `
                                 <a href="${url}" target="_blank" rel="noopener noreferrer" class="social-link" title="${platform}">
                                     ${getSocialIcon(platform)}
@@ -564,7 +565,7 @@ function renderFooter() {
                     <h4>Sígueme</h4>
                     <div class="social-links">
                         ${Object.entries(CONFIG.social)
-                            .filter(([_, value]) => value)
+                            .filter(([platform, value]) => value && platform !== 'github')
                             .map(([platform, url]) => `
                                 <a href="${url}" target="_blank" rel="noopener noreferrer" class="social-link" title="${platform}">
                                     ${getSocialIcon(platform)}
