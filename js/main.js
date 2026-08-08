@@ -204,6 +204,7 @@ function renderHome() {
 
                 <div class="hero-cta">
                     <a href="#contact" class="btn btn-primary">Contactar</a>
+                    <a href="${CONFIG.social.linkedin}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn</a>
                 </div>
             </div>
 
